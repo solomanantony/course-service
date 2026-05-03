@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - docker push $ECR_REPO:$IMAGE_TAG
-      - printf '[{"name":"course-service","imageUri":"%s"}]' $ECR_REPO:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"app-2048-soloman","imageUri":"%s"}]' $ECR_REPO:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files:
