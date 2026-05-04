@@ -44,7 +44,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
 
     alb.ingress.kubernetes.io/group.name: students-app
-    alb.ingress.kubernetes.io/group.name: /health
+    alb.ingress.kubernetes.io/group.name: /soloman/health
 
 
 spec:
