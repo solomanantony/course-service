@@ -13,7 +13,7 @@ dynamodb      = boto3.resource("dynamodb", region_name=REGION)
 courses_table = dynamodb.Table("course-soloman")
  
  
-@app.route("/health")
+@app.route("/soloman/health")
 def health():
     return jsonify({"status": "ok", "service": "course-service"}), 200
  
@@ -21,7 +21,7 @@ def health():
 # ---------------------------
 # CREATE COURSE (POST)
 # ---------------------------
-@app.route("/courses", methods=["POST"])
+@app.route("/soloman/courses", methods=["POST"])
 def create_course():
     try:
         data = request.get_json()
@@ -46,7 +46,7 @@ def create_course():
         return jsonify({"error": str(e)}), 500
  
  
-@app.route("/courses/<course_code>", methods=["GET"])
+@app.route("/soloman/courses/<course_code>", methods=["GET"])
 def get_course(course_code):
     resp = courses_table.get_item(Key={"id": course_code})
     item = resp.get("Item")
@@ -55,7 +55,7 @@ def get_course(course_code):
     return jsonify(item), 200
  
  
-@app.route("/courses", methods=["GET"])
+@app.route("/soloman/courses", methods=["GET"])
 def list_courses():
     resp = courses_table.scan(Limit=50)
     return jsonify(resp.get("Items", [])), 200
